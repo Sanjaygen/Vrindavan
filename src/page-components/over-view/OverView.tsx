@@ -1,11 +1,13 @@
 'use client';
 
-const OverView = () => {
-    return (
-        <div>
-            hiiii
-        </div>
-    );
-  };
-  
-  export default OverView;
+import DashboardTable from "./helper-component/DashboardTable";
+
+const OverView = ()=> {
+ return(
+    <div>
+     <DashboardTable columns={[]} rows={[]}/>
+    </div>
+ );
+};
+
+export default OverView;
