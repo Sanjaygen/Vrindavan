@@ -21,8 +21,12 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const NoteToolbar = () => {
-  const [editorValue, setEditorValue] = useState("");
+interface NoteToolbarProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const NoteToolbar: React.FC<NoteToolbarProps> = ({ value, onChange }) => {
   const quillRef = useRef<ReactQuill | null>(null);
 
   useEffect(() => {
@@ -32,7 +36,7 @@ const NoteToolbar = () => {
 
       editorElement.style.height = `${Math.min(editorElement.scrollHeight, 300)}px`;
     }
-  }, [editorValue]);
+  }, [value]);
 
   const editorModules = {
     toolbar: [
@@ -51,8 +55,8 @@ const NoteToolbar = () => {
     <QuillWrapper>
       <ReactQuill
         ref={quillRef}
-        value={editorValue}
-        onChange={setEditorValue}
+        value={value}
+        onChange={onChange}
         modules={editorModules}
       />
     </QuillWrapper>

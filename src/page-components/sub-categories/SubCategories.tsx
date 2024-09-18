@@ -4,11 +4,13 @@ import HeaderContainer from "@/page-components/tabs/helper-components/TopContent
 import Tabs from "@/page-components/tabs/Tabs";
 import ButtonGroup from "@/page-components/tabs/helper-components/ButtonGroup";
 import CategoriesTable from "../over-view/helper-component/helper-components/CategoriesTable";
-import { Container, ContentWrapper } from "./Categories.styled";
-import CategoriesList from "./helper-component/CategoriesList";
-import EditCategoryPage from "./helper-component/EditCategories";
+import { Container, ContentWrapper } from "../categories-tabs/Categories.styled";
+import SubCategoriesList from "./helper-components/SubCategoriesList";
+import SubCategoriesTable from "../over-view/helper-component/helper-components/SubCategoriesTable";
+import EditCategoryPage from "../categories-tabs/helper-component/EditCategories";
 
-const Categories: React.FC = () => {
+
+const SubCategories: React.FC = () => {
   const initialTab = localStorage.getItem('activeTab') || "tab1";
   const [activeTab, setActiveTab] = useState<string>(initialTab); 
   const [isEditMode, setIsEditMode] = useState<boolean>(initialTab === "tab3"); 
@@ -23,8 +25,8 @@ const Categories: React.FC = () => {
   };
 
   const tabsData = [
-    { id: "tab1", label: "Categories List", icon: <FaList /> },
-    { id: "tab2", label: "Create Category", icon: <FaPlus /> },
+    { id: "tab1", label: "Sub Categories List", icon: <FaList /> },
+    { id: "tab2", label: "Create Sub Category", icon: <FaPlus /> },
   ];
 
   if (isEditMode) {
@@ -50,7 +52,7 @@ const Categories: React.FC = () => {
 
   return (
     <>
-      <HeaderContainer title="Categories" subtitle="Categories Management" />
+      <HeaderContainer title="Sub Categories" subtitle="Sub Categories Management" />
       <Container>
         <ContentWrapper>
           <Tabs
@@ -69,11 +71,11 @@ const Categories: React.FC = () => {
         <br />
 
         {activeTab === "tab1" && (
-          <CategoriesTable
+          <SubCategoriesTable
             onEditClick={handleEditClick}/>
         )}
 
-        {activeTab === "tab2" && <CategoriesList onSave={() => {}} />}
+        {activeTab === "tab2" && <SubCategoriesList onSave={() => {}} />}
 
         {activeTab === "tab3" && isEditMode && <EditCategoryPage/>}
       </Container>
@@ -81,4 +83,4 @@ const Categories: React.FC = () => {
   );
 };
 
-export default Categories;
+export default SubCategories;

@@ -4,8 +4,8 @@ import {
   Button,
   ButtonsContainer,
   FormColumn,
-  FormContainer,
   FormRow,
+  FormContainer,
   HelperText,
   ImagePreview,
   Input,
@@ -18,12 +18,13 @@ import {
   UploadArea,
   UploadIcon,
   UploadText,
-} from "./CategoriesList.styled";
+} from '@/page-components/categories-tabs/helper-component/CategoriesList.styled';
 import { MdCloudUpload } from "react-icons/md";
 import { IoIosSave } from "react-icons/io";
 import { FaUndo } from "react-icons/fa";
-import { useCreateCategories } from '@/hooks/useInventory';
+import { useCreateCategories, useCreateSubCategories } from '@/hooks/useInventory';
 import { CategoryProps } from '@/types/inventory';
+
 
 interface CategoriesListProps {
   category?: CategoryProps;
@@ -31,14 +32,14 @@ interface CategoriesListProps {
 } 
 
 
-const CategoriesList: React.FC<CategoriesListProps> = ({ category, onSave }) => {
+const SubCategoriesList: React.FC<CategoriesListProps> = ({ category, onSave }) => {
   const [image, setImage] = useState<string | null>(category?.image || null);
   const [name, setName] = useState<string>(category?.name || '');
   const [description, setDescription] = useState<string>(category?.description || '');
   const [weightage, setWeightage] = useState<string>(category?.weightage || '');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { mutate: saveCategory } = useCreateCategories();
+  const { mutate: saveCategory } = useCreateSubCategories();
 
   const handleUploadClick = () => {
     fileInputRef.current?.click();
@@ -68,14 +69,14 @@ const CategoriesList: React.FC<CategoriesListProps> = ({ category, onSave }) => 
       return;
     }
     const payload: CategoryProps = {
-      id: category?.id || '',
-      name,
-      description,
-      weightage,
-      image,
-      updated_at: '',
-      updatedAt: '',
-      category_name: ''
+        id: category?.id || '',
+        name,
+        description,
+        weightage,
+        image,
+        updated_at: '',
+        updatedAt: '',
+        category_name: ''
     };
 
     saveCategory(payload, {
@@ -195,4 +196,4 @@ const CategoriesList: React.FC<CategoriesListProps> = ({ category, onSave }) => 
     </>
   );
 };
-export default CategoriesList;
+export default SubCategoriesList;

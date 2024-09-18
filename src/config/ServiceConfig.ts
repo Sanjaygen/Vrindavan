@@ -1,3 +1,3 @@
 export const ServiceApi = {
-    baseUrl: process?.env?.NEXT_API_BASE_URL
-}
+    baseUrl: 'http://vrindavan.ap-south-1.elasticbeanstalk.com/api',
+};
