@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import DashboardLayout from "@/layout/Layout";
 import StyledComponentsRegistry from "@/lib/registry";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Vrindavan Farm",
@@ -20,9 +21,11 @@ export default function RootLayout({
        
       </head>
       <body>
+        <Providers>
         <StyledComponentsRegistry>
         <DashboardLayout>{children}</DashboardLayout>
         </StyledComponentsRegistry>
+        </Providers>
       </body>
     </html>
   );

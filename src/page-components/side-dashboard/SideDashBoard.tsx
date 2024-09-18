@@ -54,7 +54,7 @@ const SideDashBoard = () => {
         <SubMenuButton href="/category">
           <FaFolder className="sub-menu-icon" /> Categories
         </SubMenuButton>
-        <SubMenuButton href="/#">
+        <SubMenuButton href="/subcategories">
           <FaFolder className="sub-menu-icon" /> Sub Categories
         </SubMenuButton>
         <SubMenuButton href="/#">

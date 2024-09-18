@@ -1,3 +1,4 @@
+import SmallCard from "@/page-components/products-tab/helper-component/ProductCard";
 import DashboardTable from "../DashboardTable";
 interface Column {
     id: string;
@@ -287,8 +288,11 @@ const rows: Row[] = [
 ];
 
 const ProductsTable = () => {
-    return (
-        <DashboardTable columns={columns} rows={rows} />
+    return ( 
+         <>
+         <SmallCard />
+         <DashboardTable columns={columns} rows={rows} />
+         </>
      );
 
 };

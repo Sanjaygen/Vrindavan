@@ -9,25 +9,9 @@ import TableRow from '@mui/material/TableRow';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { HeaderContainer, LeftControls, PageButton, PaginationButtons, PaginationContainer, PaginationInfo, RightControls, SearchContainer, SearchIcon, SearchInput } from './DashboardTable.styled';
+import { DashboardTableProps } from '@/types/inventory';
 
-interface Column {
-  id: string;
-  label: string;
-  minWidth?: number;
-  align?: 'right' | 'left' | 'center';
-  format?: (value: number | string) => string;
-}
-
-interface Row {
-  [key: string]: any;
-}
-
-interface CustomTableProps {
-  columns: Column[];
-  rows: Row[];
-}
-
-const DashboardTable: React.FC<CustomTableProps> = ({ columns, rows }) => {
+const DashboardTable: React.FC<DashboardTableProps> = ({ columns, rows, onEditClick }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -58,10 +42,6 @@ const DashboardTable: React.FC<CustomTableProps> = ({ columns, rows }) => {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
-
-  // const handleSearchButtonClick = () => {
-  //   console.log("Search triggered with query:", searchQuery);
-  // };
 
   const filteredRows = rows.filter((row) =>
     columns.some((column) =>
@@ -150,6 +130,7 @@ const DashboardTable: React.FC<CustomTableProps> = ({ columns, rows }) => {
                                 marginRight: 8,
                                 color: "#007bff",
                               }}
+                              onClick={() => onEditClick(row.id)}   // Ensure this matches the type
                             />
                             <FaRegTrashAlt
                               style={{ cursor: "pointer", color: "#dc3545" }}

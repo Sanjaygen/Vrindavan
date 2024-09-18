@@ -3,6 +3,8 @@
 import Categories from "@/page-components/categories-tabs/Categories";
 
 const Category = () => {
+
+  
     return (
        <>
        <Categories/>
